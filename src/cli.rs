@@ -1,7 +1,7 @@
 use clap::Parser;
 use std::path::PathBuf;
 
-/// injectionforge-cli is a command-line interface for injectionforge.
+/// injectionforge-cli is a command-line interface for InjectionForge.
 #[derive(Parser, Clone)]
 #[command(
     version,
@@ -9,33 +9,13 @@ use std::path::PathBuf;
     long_about = None
 )]
 pub struct Cli {
-    /// InjectionForge source repo url.
-    #[arg(
-        short,
-        long,
-        default_value = "https://github.com/dzervas/injectionforge"
-    )]
-    pub repo_url: PathBuf,
-    /// Path of the build directory.
-    #[arg(
-        short,
-        long,
-        value_name("BUILD_DIR_PATH"),
-        default_value = "./build/injectionforge"
-    )]
-    pub build_dir: PathBuf,
-
-    /// Path of the dist directory.
-    #[arg(short, long, value_name("DIST_DIR_PATH"), default_value = "./dist/")]
-    pub dist_dir: PathBuf,
+    /// Run with pid <PID|PROCESS_NAME>.
+    #[arg(short, long = "run" , value_name("PID|PROCESS_NAME"), conflicts_with_all = ["injectable_dll", "proxy_dll", "standalone_exe"])]
+    pub run_standalone_exe: Option<String>,
 
     /// Build standalone exe.
     #[arg(short, long, conflicts_with = "run_standalone_exe")]
     pub standalone_exe: bool,
-
-    /// Run standalone exe with pid <PID>.
-    #[arg(short= 'e', long , value_name("PID|PROCESS_NAME"), conflicts_with_all = ["injectable_dll", "proxy_dll", "standalone_exe"])]
-    pub run_standalone_exe: Option<String>,
 
     /// Build injectable dll.
     #[arg(short, long, conflicts_with = "run_standalone_exe")]
@@ -76,4 +56,24 @@ pub struct Cli {
     /// Clean the <BUILD_DIR_PATH> directory.
     #[arg(long)]
     pub clean: bool,
+
+    /// InjectionForge git source repo url.
+    #[arg(long, default_value = "https://github.com/dzervas/injectionforge")]
+    pub repo_url: PathBuf,
+
+    /// Checkout git source.
+    #[arg(long, default_value = "origin/main")]
+    pub repo_checkout: String,
+
+    /// Path of the build directory.
+    #[arg(
+        long,
+        value_name("BUILD_DIR_PATH"),
+        default_value = "./build/injectionforge"
+    )]
+    pub build_dir: PathBuf,
+
+    /// Path of the dist directory.
+    #[arg(long, value_name("DIST_DIR_PATH"), default_value = "./dist/")]
+    pub dist_dir: PathBuf,
 }

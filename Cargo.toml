@@ -1,8 +1,8 @@
 [package]
 name = "injectionforge-cli"
-version = "0.1.0"
+version = "0.1.0-dev"
 edition = "2024"
-description = "Injectionforge-cli is a command-line interface for InjectionForge, a tool that compiles Frida scripts into injectable libraries or executables, allowing them to inject themselves."
+description = "InjectionForge CLI is a command-line interface for InjectionForge"
 license = "GPL-3.0"
 keywords = ["frida", "cargo", "injection"]
 readme = "README.md"

@@ -7,7 +7,7 @@ use crate::dist::dist;
 use crate::setup::setup;
 use crate::utils::check_command;
 use anyhow::{Ok, Result, anyhow};
-use clap::Paranyhow, ser;
+use clap::Parser;
 use run::run_standalone_exe;
 
 mod build;
@@ -62,7 +62,7 @@ fn main() -> Result<()> {
     } else {
         return Err(anyhow!(
             "Either --frida-code-file or --frida-code-string should be provided"
-        ));
+        )); // should never be reached, has enforced with Clap
     };
 
     check_requirements()?;
@@ -70,7 +70,7 @@ fn main() -> Result<()> {
         clean(&args.build_dir)?;
     }
     if args.standalone_exe || args.injectable_dll || args.proxy_dll.is_some() {
-        setup(&args.repo_url, &args.build_dir)?;
+        setup(&args.repo_url, &args.build_dir, &args.repo_checkout)?;
         if args.standalone_exe {
             let artifacts = build_standalone_exe(&args.build_dir, &frida_code)?;
             dist(&artifacts, &args.dist_dir)?;
