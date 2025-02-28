@@ -2,7 +2,9 @@
 
 The **InjectionForge CLI** is a command-line interface for **InjectionForge**.
 
-**InjectionForge** is a tool that compiles Frida scripts into injectable libraries or executables, enabling them to inject themselves. The **InjectionForge CLI** makes it easier to work with InjectionForge by automating the process of cloning and building the project. It provides a user-friendly way to integrate InjectionForge into your development pipeline, build systems, and more.
+[**InjectionForge**](https://github.com/dzervas/injectionforge) is a tool that compiles Frida scripts into injectable libraries or executables, enabling them to inject themselves.
+**InjectionForge CLI** makes it easier to work with InjectionForge by automating the process of cloning and building the project.
+It provides a user-friendly way to integrate InjectionForge into your development pipeline, build systems, and more.
 
 ## Status
 
@@ -10,9 +12,9 @@ This project is still a work in progress (WIP). Stay tuned for new features and 
 
 ## Requirements
 
-- **git**: Version control system for cloning the repository.
-- **cargo**: Rust's package manager and build system.
-- **jq**: Command-line tool for processing JSON.
+- **git**
+- **cargo**
+- **jq**
 
 ## License
 
